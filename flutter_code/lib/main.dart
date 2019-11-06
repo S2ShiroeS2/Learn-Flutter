@@ -10,6 +10,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Welcome to Flutter",
       home: RandomWords(),
+      //Chỉnh mày đơn giản bằng thuộc tính theme
+      theme: ThemeData(
+        primaryColor: Colors.deepOrangeAccent,
+      ),
     );
   }
 }
