@@ -221,7 +221,7 @@ class HomePage extends StatelessWidget {
                                     height: 5.0,
                                   ),
                                   Text(
-                                    'Add Fund',
+                                    'Withdraw',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -243,7 +243,7 @@ class HomePage extends StatelessWidget {
                                     height: 5.0,
                                   ),
                                   Text(
-                                    'Add Fund',
+                                    ' Top Up ',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -375,19 +375,19 @@ class CustomBlueClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    path.lineTo(0.0, size.height - 80);
+    path.lineTo(0.0, size.height - 40);
 
-    var firstControlPoint = Offset(size.width * 0.02, size.height - 34);
-    var fistEndPoint = Offset(size.width / 2, size.height - 34);
+    var firstControlPoint = Offset(size.width * 0.02, size.height);
+    var fistEndPoint = Offset(size.width / 2, size.height);
     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
         fistEndPoint.dx, fistEndPoint.dy);
 
-    var secondControlPoint = Offset(size.width * 0.98, size.height - 34);
-    var secondEndPoint = Offset(size.width, size.height - 80);
+    var secondControlPoint = Offset(size.width * 0.98, size.height);
+    var secondEndPoint = Offset(size.width, size.height - 40);
     path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
         secondEndPoint.dx, secondEndPoint.dy);
 
-    path.lineTo(size.width, size.height - 80);
+    path.lineTo(size.width, size.height - 40);
     path.lineTo(size.width, 0.0);
     path.close();
     return path;
