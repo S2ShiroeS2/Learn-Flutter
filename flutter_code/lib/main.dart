@@ -1,111 +1,475 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+  ));
+  return runApp(MyApp());
+}
+
+//Khai báo mã màu
+Color colorPink = Color.fromRGBO(217, 108, 157, 1.0);
+Color colorPurple = Color.fromRGBO(132, 61, 179, 1.0);
+Color colorDarkPurple = Color.fromRGBO(19, 2, 38, 1.0);
+Color colorBlue = Color.fromRGBO(143, 146, 181, 1.0);
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        fontFamily: 'Quicksand',
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      backgroundColor: colorBlue,
+      //Create button add
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {},
+        backgroundColor: Colors.white,
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Container(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            TopPart(), //Heading
+            PinkPart(),
+            LightPurple(),
+            DarkPurple(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//Heading page
+class TopPart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 120.0,
+      color: colorPink,
+      child: Material(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(60.0),
+        ),
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 40.0,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment
+                  .spaceEvenly, //Canh đều theo kích cở chiều rộng của màn hình
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 25.0,
+                      backgroundImage: ExactAssetImage('assets/pic-01.jpg'),
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      "YOU",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.pink),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.trending_up,
+                          size: 28.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      "TRENDING",
+                      style: TextStyle(),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(9.0),
+                        child: Icon(
+                          Icons.favorite_border,
+                          size: 28.0,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      "HEALTH",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PinkPart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 160.0,
+      color: colorPurple,
+      child: Material(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(60.0),
+        ),
+        color: colorPink,
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 30.0,
+            ),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    "TODAY 05:30 PM",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    "Yoga and Meditation for Beginners",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 70.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              left: 15.0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 3.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                child: CircleAvatar(
+                                  radius: 17.0,
+                                  backgroundImage:
+                                      ExactAssetImage('assets/pic-02.jpg'),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 3.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: CircleAvatar(
+                                radius: 17.0,
+                                backgroundImage:
+                                    ExactAssetImage('assets/pic-03.jpg'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 1.0,
+                      ),
+                      Text(
+                        "join Marie, John & 10 others",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class LightPurple extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 160.0,
+      color: colorDarkPurple,
+      child: Material(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(60.0),
+        ),
+        color: colorPurple,
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 30.0,
+            ),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    "TUESDAY 05:30 PM",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    "Practice French, English And Chinese",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 70.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              left: 15.0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 3.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                child: CircleAvatar(
+                                  radius: 17.0,
+                                  backgroundImage:
+                                      ExactAssetImage('assets/pic-04.jpg'),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 3.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: CircleAvatar(
+                                radius: 17.0,
+                                backgroundImage:
+                                    ExactAssetImage('assets/pic-05.jpg'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 1.0,
+                      ),
+                      Text(
+                        "join Ryan, Bob & 12 others",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DarkPurple extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 160.0,
+      color: colorBlue,
+      child: Material(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(60.0),
+        ),
+        color: colorDarkPurple,
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 30.0,
+            ),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    "FRIDAY 06:00 PM",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    "Adobe XD Live Event in Europe",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 70.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              left: 15.0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 3.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                child: CircleAvatar(
+                                  radius: 17.0,
+                                  backgroundImage:
+                                      ExactAssetImage('assets/pic-06.jpg'),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 3.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: CircleAvatar(
+                                radius: 17.0,
+                                backgroundImage:
+                                    ExactAssetImage('assets/pic-07.jpg'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 1.0,
+                      ),
+                      Text(
+                        "join Alice, Tom & 22 others",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
