@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_code/pages/add_events_page.dart';
+import 'package:flutter_code/pages/add_tasks_page.dart';
 import 'package:flutter_code/pages/events_page.dart';
 import 'package:flutter_code/pages/tasks_page.dart';
+import 'package:flutter_code/widgets/custom_button.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,8 +51,22 @@ class _MyHomePageState extends State<MyHomePage> {
           _mainContent(context),
         ],
       ),
+      //Button Task
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () {
+          showDialog(
+            barrierDismissible: false, //click button back of smartphone
+            context: context,
+            builder: (BuildContext context) {
+              return Dialog(
+                child: AddEventPage(),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              );
+            },
+          );
+        },
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation
@@ -62,13 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Flexible(
               child: IconButton(
-                onPressed: () => {},
+                onPressed: () {},
                 icon: Icon(Icons.settings),
               ),
             ),
             Flexible(
               child: IconButton(
-                onPressed: () => {},
+                onPressed: () {},
                 icon: Icon(Icons.more_vert),
               ),
             ),
@@ -109,34 +126,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Row(
       children: <Widget>[
         Expanded(
-          child: MaterialButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding: const EdgeInsets.all(14.0),
+          child: CustomButton(
+            onPressed: () {},
+            buttonText: "Tasks",
             color: Theme.of(context).accentColor,
             textColor: Colors.white,
-            onPressed: () => {},
-            child: Text("Tasks"),
           ),
         ),
         SizedBox(
           width: 32.0,
         ),
         Expanded(
-          child: MaterialButton(
-            shape: RoundedRectangleBorder(
-              //Border for button
-              side: BorderSide(
-                color: Theme.of(context).accentColor,
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding: const EdgeInsets.all(14.0),
+          child: CustomButton(
+            onPressed: () {},
+            buttonText: "Events",
             color: Colors.white,
             textColor: Theme.of(context).accentColor,
-            onPressed: () => {},
-            child: Text("Events"),
+            borderColor: Theme.of(context).accentColor,
           ),
         ),
       ],
